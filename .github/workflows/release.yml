@@ -95,9 +95,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send Discord Webhook with Release Jar
-        if: "${{ secrets.DISCORD_WEBHOOK_URL != '' }}"
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        if: env.DISCORD_WEBHOOK != ''
         run: |
           VERSION="${{ steps.bump_version.outputs.new_version }}"
           JAR_PATH="${{ steps.find_jar.outputs.jar_path }}"
