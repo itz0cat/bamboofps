@@ -1,0 +1,15 @@
+1.21.11 IS a real Minecraft Java version (the last 1.21.x release, still obfuscated, so Yarn mappings work). Do NOT downgrade to 1.21.1 or change the target. Proof, please open these:
+- https://docs.fabricmc.net/it_it/develop/getting-started/generating-sources (the Fabric docs list 1.21.11 as a supported version)
+- https://marketplace.visualstudio.com/items?itemName=Mosberg.fabric-mod-snippets (a Fabric 1.21.11 template with the exact versions below)
+- https://github.com/Partacus-SPQR/SimpleLoot/releases (a mod released for 1.21.11 with its loader and API versions)
+- https://fabricmc.net/develop (the official Fabric version picker)
+
+Skip the version lookups through curl, since it is blocked here. Use:
+
+minecraft_version=1.21.11
+yarn_mappings=1.21.11+build.4
+fabric_api_version=0.141.3+1.21.11
+loader_version=0.18.2 or newer (use the latest stable)
+java_version=21
+
+Use a recent Fabric Loom (newer than 1.13, since 1.21.11 needs unpick v3 support) with a matching Gradle version. If unsure about Loom or Gradle versions, check the Fabric docs for 1.21.11 and don't guess. Continue with the original prompt.
