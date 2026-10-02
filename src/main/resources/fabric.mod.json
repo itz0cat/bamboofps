@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "bamboofps",
+  "version": "${version}",
+  "name": "BambooFPS",
+  "description": "Client-side FPS optimization mod near large farms by selectively hiding blocks, block entities, items, and cancelling particles.",
+  "authors": [
+    "itz0cat"
+  ],
+  "contact": {
+    "homepage": "https://github.com/itz0cat/bamboofps",
+    "sources": "https://github.com/itz0cat/bamboofps"
+  },
+  "license": "MIT",
+  "icon": "assets/bamboofps/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.itz0cat.bamboofps.BambooFPSClient"
+    ],
+    "modmenu": [
+      "dev.itz0cat.bamboofps.compat.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "bamboofps.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

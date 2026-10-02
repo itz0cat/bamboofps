@@ -1,0 +1,5 @@
+Stop the local build. Do not run gradle locally. Fixes:
+1. Remove the Discord webhook URL from every file. In release.yml use ${{ secrets.DISCORD_WEBHOOK_URL }} only, and skip the Discord step if the secret is empty.
+2. Replace Loom 1.15-SNAPSHOT with a stable 1.15.x release, and set the Gradle wrapper to a version that Loom requires. Check the Fabric docs, don't guess.
+3. In WorldRendererMixin, cancel event 2001 only when the block state is in the hidden blocks list.
+4. Then commit in small steps and push to origin main so GitHub Actions builds it. Tell me which workflow run to watch.

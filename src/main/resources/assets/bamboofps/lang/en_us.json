@@ -1,0 +1,18 @@
+{
+  "key.categories.bamboofps": "BambooFPS",
+  "key.bamboofps.toggle": "Toggle BambooFPS",
+  "text.bamboofps.prefix": "§8[§aBambooFPS§8]§r ",
+  "text.bamboofps.status.enabled": "BambooFPS: §aON",
+  "text.bamboofps.status.disabled": "BambooFPS: §cOFF",
+  "text.bamboofps.reload": "Configuration reloaded from disk.",
+  "text.bamboofps.add.block": "Added block to hidden list: %s",
+  "text.bamboofps.remove.block": "Removed block from hidden list: %s",
+  "text.bamboofps.add.item": "Added item to hidden list: %s",
+  "text.bamboofps.remove.item": "Removed item from hidden list: %s",
+  "text.bamboofps.invalid_id": "Invalid ID or tag: %s",
+  "text.bamboofps.already_present": "%s is already in the list.",
+  "text.bamboofps.not_present": "%s is not in the list.",
+  "text.bamboofps.list.blocks": "Hidden Blocks (%s): %s",
+  "text.bamboofps.list.items": "Hidden Items (%s): %s",
+  "text.bamboofps.list.features": "Features: Blocks=%s, Block Entities=%s, Items=%s, Particles=%s"
+}
