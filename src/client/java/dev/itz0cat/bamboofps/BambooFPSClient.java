@@ -13,12 +13,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
 @Environment(EnvType.CLIENT)
 public class BambooFPSClient implements ClientModInitializer {
     public static final String MOD_ID = "bamboofps";
 
+    private static final KeyBinding.Category BAMBOOFPS_CATEGORY = KeyBinding.Category.create(Identifier.of(MOD_ID, "main"));
     private static KeyBinding toggleKeyBinding;
 
     @Override
@@ -30,7 +32,7 @@ public class BambooFPSClient implements ClientModInitializer {
                 "key.bamboofps.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_B,
-                "key.categories.bamboofps"
+                BAMBOOFPS_CATEGORY
         ));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
