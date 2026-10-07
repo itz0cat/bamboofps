@@ -39,9 +39,18 @@ jobs:
           fi
           echo "Found remapped mod jar: $MOD_JAR"
           echo "Verifying jar contents..."
-          unzip -l "$MOD_JAR" | grep "bamboofps.refmap.json" || { echo "::error::bamboofps.refmap.json missing from $MOD_JAR!"; exit 1; }
+          unzip -l "$MOD_JAR" | grep -E "(^|[[:space:]])bamboofps\.refmap\.json$" || { echo "::error::bamboofps.refmap.json missing from $MOD_JAR!"; exit 1; }
           unzip -l "$MOD_JAR" | grep "fabric.mod.json" || { echo "::error::fabric.mod.json missing from $MOD_JAR!"; exit 1; }
           unzip -l "$MOD_JAR" | grep "bamboofps.mixins.json" || { echo "::error::bamboofps.mixins.json missing from $MOD_JAR!"; exit 1; }
+          
+          echo "=== Content of bamboofps.refmap.json ==="
+          unzip -p "$MOD_JAR" bamboofps.refmap.json
+          echo "========================================"
+          
+          echo "Verifying refmap method mappings..."
+          unzip -p "$MOD_JAR" bamboofps.refmap.json | grep "getRenderType" || { echo "::error::getRenderType mapping missing from refmap!"; exit 1; }
+          unzip -p "$MOD_JAR" bamboofps.refmap.json | grep "addBlockBreakParticles" || { echo "::error::addBlockBreakParticles mapping missing from refmap!"; exit 1; }
+          unzip -p "$MOD_JAR" bamboofps.refmap.json | grep "method_" || { echo "::error::No intermediary method_ mappings in refmap!"; exit 1; }
           echo "Verification passed successfully!"
           echo "jar_path=$MOD_JAR" >> "$GITHUB_OUTPUT"
 

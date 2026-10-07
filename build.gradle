@@ -31,6 +31,7 @@ loom {
     mixin {
         defaultRefmapName = "bamboofps.refmap.json"
         useLegacyMixinAp = true
+        add(sourceSets.client, "bamboofps.refmap.json")
     }
 }
 
@@ -75,4 +76,5 @@ jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName.get()}" }
     }
+    rename { name -> name == 'client-bamboofps.refmap.json' ? 'bamboofps.refmap.json' : name }
 }
