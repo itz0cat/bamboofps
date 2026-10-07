@@ -30,6 +30,7 @@ loom {
 
     mixin {
         defaultRefmapName = "bamboofps.refmap.json"
+        useLegacyMixinAp = true
     }
 }
 
