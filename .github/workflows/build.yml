@@ -28,8 +28,25 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
+      - name: Verify Remapped Mod Jar
+        id: verify_jar
+        run: |
+          MOD_JAR=$(find build/libs -maxdepth 1 -name "bamboofps-*.jar" ! -name "*-dev.jar" ! -name "*-sources.jar" ! -name "*-dev-shadow.jar" | head -n 1)
+          if [ -z "$MOD_JAR" ] || [ ! -f "$MOD_JAR" ]; then
+            echo "::error::Remapped mod jar not found in build/libs!"
+            ls -la build/libs/
+            exit 1
+          fi
+          echo "Found remapped mod jar: $MOD_JAR"
+          echo "Verifying jar contents..."
+          unzip -l "$MOD_JAR" | grep "bamboofps.refmap.json" || { echo "::error::bamboofps.refmap.json missing from $MOD_JAR!"; exit 1; }
+          unzip -l "$MOD_JAR" | grep "fabric.mod.json" || { echo "::error::fabric.mod.json missing from $MOD_JAR!"; exit 1; }
+          unzip -l "$MOD_JAR" | grep "bamboofps.mixins.json" || { echo "::error::bamboofps.mixins.json missing from $MOD_JAR!"; exit 1; }
+          echo "Verification passed successfully!"
+          echo "jar_path=$MOD_JAR" >> "$GITHUB_OUTPUT"
+
       - name: Upload Mod Jar Artifact
         uses: actions/upload-artifact@v4
         with:
           name: bamboofps-build
-          path: build/libs/*.jar
+          path: ${{ steps.verify_jar.outputs.jar_path }}

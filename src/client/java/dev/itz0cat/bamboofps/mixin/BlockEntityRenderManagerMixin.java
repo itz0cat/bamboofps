@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BlockEntityRenderManager.class)
 public class BlockEntityRenderManagerMixin {
 
-    @Inject(method = "getRenderState", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getRenderState(Lnet/minecraft/block/entity/BlockEntity;FLnet/minecraft/client/render/command/ModelCommandRenderer$CrumblingOverlayCommand;)Lnet/minecraft/client/render/block/entity/state/BlockEntityRenderState;", at = @At("HEAD"), cancellable = true)
     private <E extends BlockEntity> void bamboofps$skipBlockEntityRenderState(E blockEntity, float tickProgress, ModelCommandRenderer.CrumblingOverlayCommand crumblingOverlay, CallbackInfoReturnable<?> cir) {
         if (ConfigManager.shouldHideBlockEntity(blockEntity)) {
             cir.setReturnValue(null);

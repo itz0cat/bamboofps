@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
 
-    @Inject(method = "processWorldEvent", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "processWorldEvent(ILnet/minecraft/util/math/BlockPos;I)V", at = @At("HEAD"), cancellable = true)
     private void bamboofps$cancelWorldEvents(int eventId, BlockPos pos, int data, CallbackInfo ci) {
         // Cancel event 2001 (BLOCK_BROKEN) only when the block state is in the hidden blocks list
         if (eventId == WorldEvents.BLOCK_BROKEN && data > 0) {

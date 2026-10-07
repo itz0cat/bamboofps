@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(AbstractBlock.AbstractBlockState.class)
 public abstract class AbstractBlockStateMixin {
 
-    @Inject(method = "getRenderType", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getRenderType()Lnet/minecraft/block/BlockRenderType;", at = @At("HEAD"), cancellable = true)
     private void bamboofps$getRenderType(CallbackInfoReturnable<BlockRenderType> cir) {
         if (ConfigManager.shouldHideBlock((BlockState) (Object) this)) {
             cir.setReturnValue(BlockRenderType.INVISIBLE);
